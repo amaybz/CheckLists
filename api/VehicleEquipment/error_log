@@ -1,0 +1,68 @@
+[22-Aug-2022 00:47:20 UTC] PHP Warning:  require_once(.../classes/membersdb.php): failed to open stream: No such file or directory in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 13
+[22-Aug-2022 00:47:20 UTC] PHP Fatal error:  require_once(): Failed opening required '.../classes/membersdb.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 13
+[22-Aug-2022 00:47:40 UTC] PHP Warning:  require_once(.../classes/membersdb.php): failed to open stream: No such file or directory in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 13
+[22-Aug-2022 00:47:40 UTC] PHP Fatal error:  require_once(): Failed opening required '.../classes/membersdb.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 13
+[22-Aug-2022 00:48:49 UTC] PHP Warning:  require_once(.../classes/membersdb.php): failed to open stream: No such file or directory in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 14
+[22-Aug-2022 00:48:49 UTC] PHP Fatal error:  require_once(): Failed opening required '.../classes/membersdb.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 14
+[22-Aug-2022 00:53:14 UTC] PHP Parse error:  syntax error, unexpected '/' in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 15
+[22-Aug-2022 00:53:23 UTC] PHP Parse error:  syntax error, unexpected '/' in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 15
+[22-Aug-2022 10:53:53 Australia/Melbourne] PHP Warning:  dirname() expects exactly 1 parameter, 2 given in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 15
+[22-Aug-2022 10:53:53 Australia/Melbourne] PHP Warning:  require_once(/home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment): failed to open stream: No such file or directory in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 15
+[22-Aug-2022 10:53:53 Australia/Melbourne] PHP Fatal error:  require_once(): Failed opening required '' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 15
+[22-Aug-2022 10:55:43 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$IDBaseCode in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 10:55:43 Australia/Melbourne] PHP Warning:  Creating default object from empty value in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 10:55:43 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$GameID in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 43
+[22-Aug-2022 10:55:43 Australia/Melbourne] PHP Fatal error:  Cannot access private property membersdb::$MemberAuthToken in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 51
+[22-Aug-2022 10:56:09 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$IDBaseCode in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 10:56:09 Australia/Melbourne] PHP Warning:  Creating default object from empty value in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 10:56:09 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$GameID in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 43
+[22-Aug-2022 10:56:11 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 88
+[22-Aug-2022 10:56:11 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 89
+[22-Aug-2022 10:56:11 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[22-Aug-2022 10:56:11 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 91
+[22-Aug-2022 10:56:11 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 92
+[22-Aug-2022 10:56:11 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 93
+[22-Aug-2022 11:30:19 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$IDBaseCode in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 11:30:19 Australia/Melbourne] PHP Warning:  Creating default object from empty value in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 11:30:19 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$GameID in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 43
+[22-Aug-2022 11:30:20 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 88
+[22-Aug-2022 11:30:20 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 89
+[22-Aug-2022 11:30:20 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[22-Aug-2022 11:30:20 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 91
+[22-Aug-2022 11:30:20 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 92
+[22-Aug-2022 11:30:20 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 93
+[22-Aug-2022 11:34:35 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$IDBaseCode in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 11:34:35 Australia/Melbourne] PHP Warning:  Creating default object from empty value in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 11:34:35 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$GameID in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 43
+[22-Aug-2022 11:34:36 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 88
+[22-Aug-2022 11:34:36 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 89
+[22-Aug-2022 11:34:36 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[22-Aug-2022 11:34:36 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 91
+[22-Aug-2022 11:34:36 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 92
+[22-Aug-2022 11:34:36 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 93
+[22-Aug-2022 11:34:56 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$IDBaseCode in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 11:34:56 Australia/Melbourne] PHP Warning:  Creating default object from empty value in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 11:34:56 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$GameID in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 43
+[22-Aug-2022 11:34:56 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 88
+[22-Aug-2022 11:34:56 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 89
+[22-Aug-2022 11:34:56 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[22-Aug-2022 11:34:56 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 91
+[22-Aug-2022 11:34:56 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 92
+[22-Aug-2022 11:34:56 Australia/Melbourne] PHP Notice:  Undefined index: data in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 93
+[22-Aug-2022 11:37:18 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$IDBaseCode in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 11:37:18 Australia/Melbourne] PHP Warning:  Creating default object from empty value in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 42
+[22-Aug-2022 11:37:18 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$GameID in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 43
+[22-Aug-2022 11:37:18 Australia/Melbourne] PHP Notice:  Undefined index: team in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[22-Aug-2022 11:37:18 Australia/Melbourne] PHP Notice:  Undefined variable: ValidToken in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 66
+[22-Aug-2022 11:37:18 Australia/Melbourne] PHP Notice:  Undefined variable: ValidToken in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 78
+[22-Aug-2022 01:51:04 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 100
+[22-Aug-2022 01:51:14 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 100
+[22-Aug-2022 01:51:32 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 100
+[22-Aug-2022 11:51:40 Australia/Melbourne] PHP Notice:  Trying to get property of non-object in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 46
+[22-Aug-2022 11:51:40 Australia/Melbourne] PHP Warning:  Creating default object from empty value in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 46
+[22-Aug-2022 11:51:40 Australia/Melbourne] PHP Notice:  Trying to get property of non-object in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 47
+[22-Aug-2022 11:51:40 Australia/Melbourne] PHP Notice:  Undefined index: team in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[22-Aug-2022 11:52:11 Australia/Melbourne] PHP Notice:  Trying to get property of non-object in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 46
+[22-Aug-2022 11:52:11 Australia/Melbourne] PHP Warning:  Creating default object from empty value in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 46
+[22-Aug-2022 11:52:11 Australia/Melbourne] PHP Notice:  Trying to get property of non-object in /home3/maybzcom/public_html/dptses/check_list/api/VehicleEquipment/index.php on line 47
+[22-Aug-2022 11:52:11 Australia/Melbourne] PHP Notice:  Undefined index: team in /home3/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
