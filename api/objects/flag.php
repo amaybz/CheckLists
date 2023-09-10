@@ -75,6 +75,8 @@
             $stmt->bind_param("siis", $this->issue, $this->vehicleID, $this->itemID, $this->reportedBy);
             // execute query
             if($stmt->execute()){
+                //send email
+
                 return true;
             }
   
