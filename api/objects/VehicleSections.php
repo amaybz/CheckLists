@@ -9,12 +9,14 @@ class VehicleSections{
     public $id;
     public $idVehicle;
     public $Name;
+    public $IDSection;
 
 
   
     // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
+        $this->IDSection = 0;
     }
 
     
@@ -47,16 +49,23 @@ class VehicleSections{
         // bind values
         $stmt->bind_param("i", $this->IDSection);
         // execute query
-        foreach ($Sections as $Section) {
-            $this->IDSection = $Section['id'];
-            $stmt->execute();
-            $result = $stmt->get_result();
-		    if($result->num_rows != 0) 
-		    {
-			    while($row = $result->fetch_assoc()) {
-				     $SubSections[] = $row;
-			    }
-		    }
+        if($Sections[0] != "No Records")
+        {
+            foreach ($Sections as $Section) {
+                $this->IDSection = $Section['id'];
+                $stmt->execute();
+                $result = $stmt->get_result();
+		        if($result->num_rows != 0) 
+		        {
+			        while($row = $result->fetch_assoc()) {
+				         $SubSections[] = $row;
+			        }
+		        }
+            }
+        }
+        else
+        {
+            $SubSections[] = "No Records";
         }
     
         

@@ -4,7 +4,7 @@
 	//ini_set('display_errors', 1);
     session_start(); // Use session variable on this page.
     date_default_timezone_set('Australia/Sydney');
-    require_once('classes/membersdb.php');
+    require_once('classes/users.php');
     require_once('classes/checklist.php');
     require_once('classes/db.php');
     include_once 'api/objects/VehicleSections.php';
@@ -12,7 +12,7 @@
 
     include 'classes/dbconfig.php';
 
-    $membersdb = new membersdb();
+	$users = new users();
     $CheckList = new CheckList();
 
     // get database connection
@@ -22,10 +22,15 @@
     
     
 
-    if ($membersdb->isLoggedIn == 0)
-    {
-        header("location:login.php"); // Re-direct to main.php
-    }
+    if ($users->isLoggedIn == 0)
+	{
+		header("location:login.php"); // Re-direct to main.php
+	}
+	if ($users->Permission < 1 )
+	{
+		//echo $users->Permission;
+		header("location:login.php"); // Re-direct to main.php
+	}
 
     if($_GET["idVehicle"]){
         $idVehicle = $_GET["idVehicle"];
@@ -47,8 +52,12 @@
     <meta http-equiv="Content-Type" content="text/html, charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>DPT SES - CL - Admin</title>
+    <!--
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 
@@ -166,7 +175,7 @@ function getEquipment(id) {
     "method": "POST",
     "timeout": 0,
     "headers": {
-        "Authorization": "Bearer <? echo $membersdb->MemberAuthToken; ?>",
+        "Authorization": "<? echo $users->MemberAuthToken; ?>",
         "Content-Type": "application/json"
     },
     "data": JSON.stringify({"id":id}),
@@ -192,16 +201,16 @@ function getEquipment(id) {
     });
 }
 
-function DeleteEquipment() {
+function DeleteEquipment(ItemID) {
 
     //document.write(today);
-    var ItemID = document.getElementById('itemid')
+    //var ItemID = document.getElementById('itemid')
     var settings = {
     "url": "<? echo $APIAddress; ?>VehicleEquipment/delete/index.php",
     "method": "POST",
     "timeout": 0,
     "headers": {
-        "Authorization": "Bearer <? echo $membersdb->MemberAuthToken; ?>",
+        "Authorization": "<? echo $users->MemberAuthToken; ?>",
         "Content-Type": "application/json"
     },
     "data": JSON.stringify({"id":ItemID}),
@@ -237,7 +246,7 @@ function EditEquipment() {
     "method": "POST",
     "timeout": 0,
     "headers": {
-        "Authorization": "Bearer <? echo $membersdb->MemberAuthToken; ?>",
+        "Authorization": "<? echo $users->MemberAuthToken; ?>",
         "Content-Type": "application/json"
     },
     "data": JSON.stringify({"id":ModelItemID.value,"Name":ModelItemName.value,"Qty": ModelItemQty.value, "subCatID": ModelSubSection.value, "idVehicleSection": ModelIDSection}),
@@ -290,30 +299,38 @@ function EditEquipment() {
         <?
         //print_r($Vehicles);;
         echo '<table id="tblVehicleEquipment" class="table table-striped">';
-        foreach($VehicleSections as $Sections) {
-            echo "<tr class='table-info'><td colspan=4><b>" . $Sections['Name'] . "</b></td></tr>";
+        if($VehicleSections[0] != "No Records"){
+                foreach($VehicleSections as $Sections) {
+                echo "<tr class='table-info'><td colspan=4><b>" . $Sections['Name'] . "</b></td></tr>";
             
-            $SubSections = $CheckList->getSubSectionsBySectionID($Sections['id']);
-            foreach($SubSections as $SubSection) {
-                echo "<tr class='table-dark'><td colspan=4><b>" . $SubSection['Name'] . "</b></td></tr>";
-                $equipment = $CheckList->getEquipmentBySubSectionID($SubSection['ID']);
-                foreach($equipment as $item) {
-                     
-                    echo "<tr><td>" . $item['Name'] . "</td><td>" . $item['Qty'] . "</td>"; 
-                    echo '<td><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#EditItemModel" data-bs-record="'. $item["id"] . '">Edit</button></td>';
-                    echo '<td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModel" data-bs-record="'. $item["id"] . '">DELETE</button></td></tr>';
-                }
-                echo '<tr><td><input name="itemName" id="itemName_' . $SubSection['ID'] . '" type="text" /></td>';
-                echo '<td><input name="qty" id="itemQty_' . $SubSection['ID'] . '" type="number" min="0" max="20" /></td>';
-                echo '<td>';
-                echo '<input type="hidden" name="subCatid" id="subCatid_' . $SubSection['ID'] . '" value=' . $SubSection['ID'] . '>';
-                echo '</td>';
-                echo '<td> <input id="btn' . $SubSection['ID'] . '" type="button" class="btn btn-dark" value="Add" onclick="addEquipment(' . $Sections['id'] . ',' . $SubSection['ID'] . ');"></td></tr>';
+                $SubSections = $CheckList->getSubSectionsBySectionID($Sections['id']);
+                if($SubSections[0] != "No Records"){
+                    foreach($SubSections as $SubSection) {
+                        echo "<tr class='table-dark'><td colspan=4><b>" . $SubSection['Name'] . "</b></td></tr>";
+                        $equipment = $CheckList->getEquipmentBySubSectionID($SubSection['ID']);
+                        foreach($equipment as $item) {
+                           if($equipment[0] != "No Records")
+                             {
+                            echo "<tr><td>" . $item['Name'] . "</td><td>" . $item['Qty'] . "</td>"; 
+                            echo '<td><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#EditItemModel" data-bs-record="'. $item["id"] . '">Edit</button></td>';
+                            echo '<td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModel" data-bs-record="'. $item["id"] . '">DELETE</button></td></tr>';
+                             }
+                        }
+                        echo '<tr><td><input name="itemName" id="itemName_' . $SubSection['ID'] . '" type="text" /></td>';
+                        echo '<td><input name="qty" id="itemQty_' . $SubSection['ID'] . '" type="number" min="0" max="20" /></td>';
+                        echo '<td>';
+                        echo '<input type="hidden" name="subCatid" id="subCatid_' . $SubSection['ID'] . '" value=' . $SubSection['ID'] . '>';
+                        echo '</td>';
+                        echo '<td> <input id="btn' . $SubSection['ID'] . '" type="button" class="btn btn-dark" value="Add" onclick="addEquipment(' . $Sections['id'] . ',' . $SubSection['ID'] . ');"></td></tr>';
 
+                    }
+                }
+            
             }
-            
-            
         }
+
+        
+        
         echo '</table>';
         ?>
         </form>
@@ -365,7 +382,7 @@ function EditEquipment() {
   
 
 
-<div class="modal fade" data-bs-backdrop="static" id="EditItemModel" tabindex="-1" aria-labelledby="EditItemModelLabel" aria-hidden="true">
+<div class="modal fade" id="EditItemModel" data-bs-backdrop="static" tabindex="-1" aria-labelledby="EditItemModelLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -394,12 +411,16 @@ function EditEquipment() {
                 </div>
           </div>
           <div class="mb-3">
-            <label for="SelectSubSection" class="col-form-label">Sub Section:</label>
+            <label for="EditSubSection" class="col-form-label">Sub Section:</label>
             <select class="form-select" id="EditSubSection"> 
             <? 
-                foreach($AllVehicleSubSections as $SubSection) {
-                    echo '<option value="' . $SubSection["ID"] . '" data-idsection="' . $SubSection["IDSection"] . '">' . $SubSection["Name"] . '</option>';
+                if($AllVehicleSubSections[0] != "No Records")
+                {
+                    foreach($AllVehicleSubSections as $SubSection) {
+                        echo '<option value="' . $SubSection["ID"] . '" data-idsection="' . $SubSection["IDSection"] . '">' . $SubSection["Name"] . '</option>';
+                    }
                 }
+                
             ?>
             </select>
           </div>
@@ -415,7 +436,7 @@ function EditEquipment() {
 </div>
     
 
-<div class="modal fade" data-bs-backdrop="static" id="addsectionModal" tabindex="-1" aria-labelledby="addsectionModalLabel" aria-hidden="true">
+<div class="modal fade" id="addsectionModal" tabindex="-1" aria-labelledby="addsectionModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -454,7 +475,7 @@ function EditEquipment() {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" name="btnDelete" class="btn btn-danger">DELETE</button>
+        <button type="button" id="btnDelete" name="btnDelete" data-bs-dismiss="modal" class="btn btn-danger">DELETE</button>
       </div>
     </div>
   </div>
@@ -495,37 +516,54 @@ function EditEquipment() {
 </div>
 <script>
 
-var EditItemModel = document.getElementById('EditItemModel')
-        EditItemModel.addEventListener('show.bs.modal', function (event) {
-          // Button that triggered the modal
-          var button = event.relatedTarget 
-          // Extract info from data-bs-* attributes
-          var recordid = button.getAttribute('data-bs-record')
-          var ModelItemID = document.getElementById('itemid')
-          var Modeldisplayimage = document.getElementById('displayimage')
-          ModelItemID.value = recordid
-          Modeldisplayimage.src = "img/" + recordid + ".jpg"
-           
-          getEquipment(recordid)
+const  EditItemModel = document.getElementById('EditItemModel')
+if (EditItemModel) {
+            EditItemModel.addEventListener('show.bs.modal', event => {
+              // Button that triggered the modal
           
-          // If necessary, you could initiate an AJAX request here
-          // and then do the updating in a callback.
-          //
-          // Update the modal's content.
-          //var modalTitle = exampleModal.querySelector('.modal-title')
-          //var modalBodyInput = exampleModal.querySelector('.modal-body input')
+              // Extract info from data-bs-* attributes
+              var button = event.relatedTarget
+              var recordid = button.getAttribute('data-bs-record')
+              var ModelItemID = document.getElementById('itemid')
+              var Modeldisplayimage = document.getElementById('displayimage')
+              ModelItemID.value = recordid
+              Modeldisplayimage.src = "img/" + recordid + ".jpg"
+           
+              getEquipment(recordid)
+          
+              // If necessary, you could initiate an AJAX request here
+              // and then do the updating in a callback.
+              //
+              // Update the modal's content.
+              //var modalTitle = exampleModal.querySelector('.modal-title')
+              //var modalBodyInput = exampleModal.querySelector('.modal-body input')
 
-          //modalTitle.textContent = 'New message to ' + recipient
-          //modalBodyInput.value = recipient
-        })
+              //modalTitle.textContent = 'New message to ' + recipient
+              //modalBodyInput.value = recipient
+            })
+        }
 
-        var btnDelete = document.getElementsByName('btnDelete')
+        const deleteItemModel = document.getElementById('deleteModel')
+        var delitemid = 0
+        if (deleteItemModel) {
+            deleteItemModel.addEventListener('show.bs.modal', event => {
+                //var button = event.relatedTarget 
+                    var delbutton = event.relatedTarget 
+                    var recordid = delbutton.getAttribute('data-bs-record')
+                    delitemid = recordid
+                    //console.log('Button Clicked');
+                    console.log('Button Clicked: ' + recordid);
+
+             });
+         };
+
+         const delBtnComfirm = document.getElementById('btnDelete')
         
-        btnDelete.addEventListener('click', function(event){
-                var delbutton = event.relatedTarget 
-                var recordid = button.getAttribute('data-bs-record')
-                console.log('Button Clicked' & recordid);
-         });
+         delBtnComfirm.addEventListener('click', event => {
+             console.log('Button Clicked Comfirmed: ' + delitemid);
+             DeleteEquipment(delitemid)
+             //deleteItemModel.close
+             });
 
 
 $(document).ready(function(){	

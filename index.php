@@ -1,33 +1,43 @@
 <?
-
-	//error_reporting(E_ALL);
-	//ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
 	session_start(); // Use session variable on this page.
 	date_default_timezone_set('Australia/Sydney');
-	require_once('classes/membersdb.php');
+	//require_once('classes/membersdb.php');
 	require_once('classes/checklist.php');
 	require_once('classes/db.php');
 	include 'classes/dbconfig.php';
 	require_once('classes/menu.php');
+	require_once('classes/users.php');
 
-	$membersdb = new membersdb();
+	//$membersdb = new membersdb();
+	$users = new users();
 	$CheckList = new CheckList();
 	$Menu = new Menu();
 
-	if ($membersdb->isLoggedIn == 0)
+	
+
+
+
+	if ($users->isLoggedIn == 0)
 	{
 		header("location:login.php"); // Re-direct to main.php
+		echo "NOT LOGGGED IN: ";
+		//echo $membersdb->isLoggedIn;
+		echo $users->isLoggedIn;
+
 	}
 	
 	$Vehicles = $CheckList->getVehicles();
+
+	//if($membersdb->isLoggedIn == 1)
+	//{$membersName = $membersdb->fullName;}
+	if($users->isLoggedIn == 1)
+	{$membersName = $users->fullName;}
+	
 	
 	?>
 
-<script> 
-
-
-
-</script>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <head>
@@ -44,15 +54,28 @@
 <body>
 
 
-	<? $Menu->Show(1,$membersdb->fullName); ?>
+	<? $Menu->Show(1,$membersName); ?>
 		 
 	
 	<div class="container">
 		<div class="row justify-content-md-center">
 			<div class="col-md-auto">
-				Welcome <? echo $membersdb->fullName; ?>
+				Welcome <? echo $membersName; ?>
+				<br>
+				<?php
+				// Get the current week number of the year (1–52)
+				$currentWeek = date("W");
+
+				// Cycle it into 1–4
+				$weekCycle = (($currentWeek - 1) % 4) + 1;
+
+				echo "Monthly Check - Week: $weekCycle";
+				?>
 			</div>
 		</div>
+		<br>
+
+		
 		<br>
 
 		

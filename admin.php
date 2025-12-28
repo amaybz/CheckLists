@@ -4,22 +4,24 @@
 	//ini_set('display_errors', 1);
 	session_start(); // Use session variable on this page.
 	date_default_timezone_set('Australia/Sydney');
-	require_once('classes/membersdb.php');
+	require_once('classes/users.php');
 	require_once('classes/checklist.php');
 	require_once('classes/menu.php');
 	require_once('classes/db.php');
 	include 'classes/dbconfig.php';
 
-	$membersdb = new membersdb();
+	//$membersdb = new membersdb();
+	$users = new users();
 	$CheckList = new CheckList();
 	$Menu = new Menu();
-	$membersdb->getLoggedInMember(); 
-	if ($membersdb->isLoggedIn == 0)
+	//$membersdb->getLoggedInMember(); 
+	if ($users->isLoggedIn == 0)
 	{
 		header("location:login.php"); // Re-direct to main.php
 	}
-	if ($membersdb->Permission != "EDIT_UNIT")
+	if ($users->Permission < 1 )
 	{
+		//echo $users->Permission;
 		header("location:login.php"); // Re-direct to main.php
 	}
 	$Vehicles = $CheckList->getVehicles();
@@ -35,7 +37,7 @@
 
 			//document.write(today);
 			var settings = {
-			"url": "https://maybzcomputers.com/dptses/check_list/api.php",
+			"url": "https://ajcomputers.com.au/dptses/check_list/api.php",
 			"method": "POST",
 			"timeout": 0,
 			"headers": {

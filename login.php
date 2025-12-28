@@ -4,9 +4,11 @@
 	//ini_set('display_errors', 1);
 
 date_default_timezone_set('Australia/Sydney');
-require_once('classes/membersdb.php');
+//require_once('classes/membersdb.php');
+require_once('classes/users.php');
 
-$membersdb = new membersdb();
+//$membersdb = new membersdb();
+$users = new users();
 
 session_start();
 
@@ -24,13 +26,11 @@ if($_GET['Error'])
 		$MemberID=$_POST['username'];
 		$password=$_POST['password']; 
 		
-		
-		if($membersdb->login($MemberID, $password) == 1)
-		{
-				
-				
-		}
-		if ($membersdb->isLoggedIn == 1)
+		//$membersdb->login($MemberID, $password);
+		$users->login($MemberID, $password);
+
+		//if ($membersdb->isLoggedIn == 1 | $users->isLoggedIn == 1)
+		if ($users->isLoggedIn == 1)
 		{
 			$message="Logged in";
 			header("location:index.php"); // Re-direct to main.php

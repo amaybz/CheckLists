@@ -1,0 +1,2 @@
+[08-Dec-2024 22:29:46 UTC] PHP Parse error:  Unmatched ')' in /home/maybzcom/public_html/dptses/check_list/api/login/create.php on line 54
+[21-Jan-2025 09:25:39 Australia/Melbourne] PHP Warning:  Undefined variable $jwt in /home/maybzcom/public_html/dptses/check_list/api/login/validate_token.php on line 48

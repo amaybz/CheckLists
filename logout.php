@@ -12,6 +12,7 @@
 
 	session_start();
 	session_destroy();
-	setcookie("token", "",time()-3600);
+	setcookie("tokenuser", "",time()-3600);
+	setcookie("tokenmdb", "",time()-3600);
 	header("location:login.php");
 ?>
