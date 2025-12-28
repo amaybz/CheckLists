@@ -364,3 +364,4 @@ FodyWeavers.xsd
 /api/config/database.php
 /api/config/core.php
 /api/config/database.php
+/classes/dbconfig.php
