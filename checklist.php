@@ -1,24 +1,30 @@
 <?
 
-	//error_reporting(E_ALL);
-	//ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
     session_start(); // Use session variable on this page.
     date_default_timezone_set('Australia/Sydney');
-    require_once('classes/membersdb.php');
+    //require_once('classes/membersdb.php');
     require_once('classes/db.php');
     require_once('classes/checklist.php');
     require_once('classes/menu.php');
     include 'classes/dbconfig.php';
+    require_once('classes/users.php');
 
-    $membersdb = new membersdb();
+    //$membersdb = new membersdb();
+    $users = new users();
     $db = new db();
     $CheckList = new CheckList();
     $Menu = new Menu();
 
-    if ($membersdb->isLoggedIn == 0)
-    {
-        header("location:login.php"); // Re-direct to login.php
-    }
+    if ($users->isLoggedIn == 0)
+	{
+		header("location:login.php"); // Re-direct to main.php
+		echo "NOT LOGGGED IN: ";
+		//echo $membersdb->isLoggedIn;
+		echo $users->isLoggedIn;
+
+	}
 
 
     if($_GET["idSection"]){
@@ -62,7 +68,7 @@ function getVehicleEquipmentStatus() {
     "method": "POST",
     "timeout": 0,
     "headers": {
-        "Authorization": "Bearer <? echo $membersdb->MemberAuthToken; ?>",
+        "Authorization": "<? echo $users->MemberAuthToken; ?>",
         "Content-Type": "application/json"
     },
     "data": JSON.stringify({"request":"getVehicleEquipmentStatus"}),
@@ -106,7 +112,84 @@ async function ChangeColor(id, Class) {
   console.log('after 1 second');
 }
 
+function FlagItem() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy  + '-' + mm  + '-' + dd;
+    itemID = document.getElementById('FlagItemId').value;
+    issue = document.getElementById('FlagSubjectLine').value;
+    VehicleID = document.getElementById('FlagVehicleID').value;
+    subject = document.getElementById('ModelDisplayFlagTitle').innerHTML ;
+    reportedby = document.getElementById('ReportedBy').value;
+    
+    
+    console.log(subject);
+    console.log(itemID);
+    console.log(issue);
+    console.log(VehicleID);
+    console.log(reportedby);
 
+   var settings = {
+    "url": "https://ajcomputers.com.au/dptses/check_list/api/flag/",
+    "method": "POST",
+    "timeout": 0,
+    "headers": {
+        "Authorization": "<? echo $users->MemberAuthToken; ?>",
+        "Content-Type": "application/json"
+    },
+      "data": JSON.stringify({"itemID":itemID,"issue":issue,"Date":today,"vehicleID":VehicleID, "reportedBy":reportedby, "subject":subject}),
+    };
+
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+      $('#ModelDisplayFlag').modal('hide');
+      
+    });
+
+
+
+
+
+
+
+
+    var formatted_Card_Payload = {
+        "type": "message",
+        "attachments": [
+            {
+                "contentType": "application/vnd.microsoft.card.adaptive",
+                "contentUrl": null,
+                "content": {
+                    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                    "type": "AdaptiveCard",
+                    "version": "1.2",
+                    "body": [
+                        {
+                            "type": "TextBlock",
+                            "text": "Submitted response:" + response
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+
+var webhookUrl = "https://membersesnswgov.webhook.office.com/webhookb2/2dda1a65-0c86-440b-a315-7aeae5713f83@d131eb12-43fc-4274-a9d2-9955727fe3af/IncomingWebhook/01982cc4e00e45519029ed0182d5822e/372c7906-1bfa-46e9-a17f-8cef6cec9947";
+
+axios.post(webhookUrl , formatted_Card_Payload )
+    .then(res => {
+        console.log(`statusCode: ${res.status}`)
+        console.log(res)
+    })
+    .catch(error => {
+        console.error(error)
+    })
+
+
+
+}
 
 
 
@@ -181,6 +264,7 @@ function updateQty(idVehicleEquipment, Qty){
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <body onload="onload()">
+<table><td></td></table>
 
     <? $Menu->Show(2,$membersdb->fullName); ?>
 	
@@ -231,15 +315,20 @@ function updateQty(idVehicleEquipment, Qty){
                 Section:
             </div>
             <div class="col-md-auto">
+            <?  
+                //echo "id: " . $idVehicle; 
+            ?>
+           
             <select name='idSection' id='idSection' class="form-select"  onchange='document.getElementById("frmCheckListSelect").submit();'>
 				<?
                     $class="";
+                    
                     echo '<option value="0">Select Section</option>';
                     $stmt = $db->conn->prepare("SELECT * FROM tblVehicleSections WHERE `idVehicle` = ?");
-                    $stmt->bind_param("i", $idVehicle);
+                    $stmt->bind_param('i', $idVehicle);
                     $stmt->execute();
                     $result = $stmt->get_result();
-					
+					//echo $result ;
 					if($result->num_rows != 0) 
 					{
 						while($row = $result->fetch_assoc()){
@@ -298,21 +387,25 @@ function updateQty(idVehicleEquipment, Qty){
                         //List gear for Sub Sections
                         foreach ($equipmentforSubSection as $equipment) {
                             echo "<tr>";
-                            $filename = 'img/' . $equipment['id'] . '.jpg';
-                            if (file_exists($filename)) {
-                                echo '<td data-bs-toggle="modal" data-bs-target="#ModelDisplayImage" data-bs-record="'. $equipment['id'] . '" data-bs-itemname="'. $equipment['Name'] . '">' . $equipment['Name'];
-                                echo ' <img id="imageicon" src="img/image.png" style="width:1rem;" class="figure-img img-fluid rounded" alt="IMG">' . '</td>';
+                            if (isset($equipment['id'])) {
+                                $filename = 'img/' . $equipment['id'] . '.jpg';
+                                if (file_exists($filename)) {
+                                    echo '<td data-bs-toggle="modal" data-bs-target="#ModelDisplayImage" data-bs-record="'. $equipment['id'] . '" data-bs-itemname="'. $equipment['Name'] . '">' . $equipment['Name'];
+                                    echo ' <img id="imageicon" src="img/image.png" style="width:1rem;" class="figure-img img-fluid rounded" alt="IMG">' . '</td>';
 
-                            } else {
-                                echo "<td>" . $equipment['Name'] . "</td>";
-                            }
+                                } else {
+                                    echo "<td>" . $equipment['Name'] . "</td>";
+                                }
                             
-                            echo "<td>" . $equipment['Qty'] . "</td>";
-                            echo '<td id="td_' . $equipment['id'] . '"> <div class="col-xs-2"><input id="Qty_' . $equipment['id'] . '" type="number" min="0" max="20" size=5 onClick="this.focus();this.select();" onblur="updateQty(' .  $equipment['id'] . ', this.value);"/>' . "</div></td>";
-                            echo '<td name="tdcheck"><input type="checkbox" name="itemchk" id="' . $equipment['id'] . '" /></td>';
-                                echo '<td data-bs-toggle="modal" data-bs-target="#ModelDisplayFlag" data-bs-record="'. $equipment['id'] . '" data-bs-itemname="'. $equipment['Name'] . '" data-bs-VehicleID="'. $idVehicle .  '" data-bs-VehicleCallSign="'. $VehicleCallSign . '">'; 
-                                echo ' <img id="imageicon" src="img/flag.png" style="width:1rem;" class="figure-img img-fluid rounded" alt="IMG">' . '</td>';
-                            echo '</tr>';     
+                                echo "<td>" . $equipment['Qty'] . "</td>";
+                                echo '<td id="td_' . $equipment['id'] . '"> <div class="col-xs-2"><input id="Qty_' . $equipment['id'] . '" type="number" min="0" max="20" size=5 onClick="this.focus();this.select();" onblur="updateQty(' .  $equipment['id'] . ', this.value);"/>' . "</div></td>";
+                                echo '<td name="tdcheck"><input type="checkbox" name="itemchk" id="' . $equipment['id'] . '" /></td>';
+                                    echo '<td data-bs-toggle="modal" data-bs-target="#ModelDisplayFlag" data-bs-record="'. $equipment['id'] . '" data-bs-itemname="'. $equipment['Name'] . '" data-bs-VehicleID="'. $idVehicle .  '" data-bs-VehicleCallSign="'. $VehicleCallSign . '">'; 
+                                    echo ' <img id="imageicon" src="img/flag.png" style="width:1rem;" class="figure-img img-fluid rounded" alt="IMG">' . '</td>';
+                                echo '</tr>';
+                            }
+
+                                 
                         }
                  }
                 echo '</table></div>';
@@ -367,9 +460,12 @@ function updateQty(idVehicleEquipment, Qty){
             <div class="mb-3">
                         <label for="FlagSubjectLine" class="col-form-label">Flag issue:</label>
                         <input class="form-control" id="FlagSubjectLine" type="text"/> 
+                        <input class="form-control" id="FlagItemId" type="hidden" value=""/> 
+                        <input class="form-control" id="FlagVehicleID" type="hidden" value=""/> 
                       </div>
                       <div class="mb-3">
-                        Reported by <? echo $membersdb->fullName; ?>
+                        Reported by:
+                        <input class="form-control" id="ReportedBy" type="text"/> 
                       </div>
                       
                 <div class="text-center">
@@ -383,7 +479,7 @@ function updateQty(idVehicleEquipment, Qty){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" id="Save-button" class="btn btn-primary" onclick="SendEmail()"> Submit </input>
+        <button type="button" id="Save-button" class="btn btn-primary" onclick='FlagItem()'> Submit </input>
       </div>
     </div>
   </div>
@@ -400,8 +496,12 @@ var ModelDisplayImage = document.getElementById('ModelDisplayImage')
           var ItemName = button.getAttribute('data-bs-itemname')
           var modalTitle = ModelDisplayImage.querySelector('.modal-title')
           var Modeldisplayimage = document.getElementById('lrgdisplayimage')
+          
+          
           modalTitle.textContent = ItemName
           Modeldisplayimage.src = "img/" + recordid + ".jpg"
+          
+
            
           //getEquipment(recordid)
           
@@ -427,9 +527,13 @@ var ModelDisplayImage = document.getElementById('ModelDisplayImage')
           var Modeldisplayimage = document.getElementById('fllrgdisplayimage')
           var VehicleID = button.getAttribute('data-bs-VehicleID')
           var VehicleCallSign = button.getAttribute('data-bs-VehicleCallSign')
+          var modelItemID = document.getElementById('FlagItemId')
+          var modelVehicleID = document.getElementById('FlagVehicleID')
           
           modalTitle.textContent = VehicleCallSign + " " + ItemName
           Modeldisplayimage.src = "img/" + recordid + ".jpg"
+          modelItemID.value = recordid;
+          modelVehicleID.value = VehicleID;
 
 
         })
@@ -475,6 +579,7 @@ function onload() {
                                 setTimeout(function(){ getVehicleEquipmentStatus(); }, 1000);
                                 //getVehicleEquipmentStatus();
 								//UpdateAvailability(td.childNodes[i]);
+                                return true
                             } else {
                                 td.childNodes[i].checked = true;
                                 //td.style.backgroundColor = "green";
@@ -483,9 +588,11 @@ function onload() {
                                 SetVehicleEquipmentStatus(td.childNodes[i].id, 1, Qty)
                                 setTimeout(function(){ getVehicleEquipmentStatus(); }, 1000);
                                 //getVehicleEquipmentStatus();
+                                return true
                             }
                         } else {
                             tdOnclick(td.childNodes[i]);
+                            return true
                         }
                     }
                 }

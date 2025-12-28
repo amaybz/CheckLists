@@ -4,18 +4,18 @@
 	//ini_set('display_errors', 1);
     session_start(); // Use session variable on this page.
     date_default_timezone_set('Australia/Sydney');
-    require_once('classes/membersdb.php');
+    require_once('classes/users.php');
     require_once('classes/db.php');
     require_once('classes/checklist.php');
     include 'classes/dbconfig.php';
     require_once('classes/menu.php');
 
-    $membersdb = new membersdb();
+    $users = new users();
     $db = new db();
     $CheckList = new CheckList();
     $Menu = new Menu();
 
-    if ($membersdb->isLoggedIn == 0)
+    if ($users->isLoggedIn == 0)
     {
         header("location:login.php"); // Re-direct to login.php
     }
@@ -133,7 +133,7 @@ function getVehicleEquipmentStatus() {
 <div class="container">
      <div class="row justify-content-md-center">
         <div class="col-md-auto">
-            Welcome <? echo $membersdb->fullName; ?>
+            Welcome <? echo $users->fullName; ?>
             <form id="frmCheckListSelect"> 
             
           </div>

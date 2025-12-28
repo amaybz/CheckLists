@@ -12,7 +12,7 @@ header("Access-Control-Allow-Headers: Content-Type, set, Access-Control-Allow-He
 include_once '../../config/core.php';
 include_once '../../config/database.php';
 include_once '../../objects/VehicleEquipment.php';
-require_once('../../../classes/membersdb.php');
+require_once('../../../classes/users.php');
 require_once( '../../../classes/checklist.php');
  
 // get posted data
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 //connection to members DB
-$membersdb = new membersdb();
+$users = new users();
 
 // get database connection
 $database = new Database();
@@ -53,9 +53,9 @@ if($token){
     $ValidToken = 0;
     try {
         // decode jwt
-        $membersdb->MemberAuthToken = $token;
-        $membersdb->LoginViaToken();
-        if ($membersdb->isLoggedIn == 1)
+        $users->MemberAuthToken = $token;
+        $users->LoginViaToken();
+        if ($users->isLoggedIn == 1)
 	    {
 		    $ValidToken = 1;
 	    }

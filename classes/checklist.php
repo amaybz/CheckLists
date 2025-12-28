@@ -24,7 +24,7 @@ class CheckList
 		}
 		else
 		{
-			$EquipmentStatus[] = "no Records";
+			$EquipmentStatus[0]['Status'] = 0;
 			return $EquipmentStatus;
 		}
 		$stmt->close();
@@ -47,7 +47,7 @@ class CheckList
 		}
 		else
 		{
-			$EquipmentStatus[] = "no Records";
+			$EquipmentStatus[0]['Status'] = "no Records";
 			return $EquipmentStatus;
 		}
 		$stmt->close();
@@ -269,24 +269,39 @@ class CheckList
 		$equipmentcount = 0;
 		$ProgressCount = 0;
 		foreach($VehicleSections as $Sections) {
+			if(isset($Sections['id']))
+			{
             $SubSections = $this->getSubSectionsBySectionID($Sections['id']);
-            foreach($SubSections as $SubSection) {
-                $equipment = $this->getEquipmentBySubSectionID($SubSection['ID']);
-				$equipmentcount = $equipmentcount + count($equipment);
-                foreach($equipment as $item) {
-                    $itemstatus = $this->getEquipmentStatusbyid($item['id']);
-
-					if($itemstatus[0][Status] == 1 and date("Y-m-d", strtotime($itemstatus[0][Date]) ) == date("Y-m-d"))
+				foreach($SubSections as $SubSection) {
+					if(isset($SubSection['ID']))
 					{
+						$equipment = $this->getEquipmentBySubSectionID($SubSection['ID']);
+						$equipmentcount = $equipmentcount + count($equipment);
+						foreach($equipment as $item) {
+							if(isset($item['id']))
+							{
+								$itemstatus = $this->getEquipmentStatusbyid($item['id']);
+								if($itemstatus[0]["Status"] == 1 and date("Y-m-d", strtotime($itemstatus[0]["Date"]) ) == date("Y-m-d"))
+								{
 						
-						$ProgressCount++;
+									$ProgressCount++;
+								}
+							}	
+						}
 					}
-                }
-            }
+				}
+			}
         }
 		$Progress["EquipmentCount"] = $equipmentcount;
 		$Progress["ProgressCount"] = $ProgressCount;
-		$Progress["Percent"] = ceil($Progress["ProgressCount"]/$Progress["EquipmentCount"] * 100);
+		if($Progress["EquipmentCount"] > 0)
+		{
+			$Progress["Percent"] = ceil($Progress["ProgressCount"]/$Progress["EquipmentCount"] * 100);
+		}
+		else
+		{
+			$Progress["Percent"] = 0;
+		}
 
 
 		return $Progress;
@@ -301,13 +316,17 @@ class CheckList
                 $equipment = $this->getEquipmentBySubSectionID($SubSection['ID']);
 				$equipmentcount = $equipmentcount + count($equipment);
                 foreach($equipment as $item) {
-                    $itemstatus = $this->getEquipmentStatusbyid($item['id']);
+					if (isset($item['id'])) {
+						$itemid = $item['id'];
+						$itemstatus = $this->getEquipmentStatusbyid($itemid);
 
-					if($itemstatus[0][Status] == 1 and date("Y-m-d", strtotime($itemstatus[0][Date]) ) == date("Y-m-d"))
-					{
+						if($itemstatus[0]["Status"] == 1 and date("Y-m-d", strtotime($itemstatus[0]["Date"]) ) == date("Y-m-d"))
+						{
 						
-						$ProgressCount++;
+							$ProgressCount++;
+						}
 					}
+					
                 }
             }
         

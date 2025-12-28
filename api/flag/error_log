@@ -1,0 +1,192 @@
+[11-Sep-2023 07:09:59 UTC] PHP Warning:  include_once(../../config/core.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 12
+[11-Sep-2023 07:09:59 UTC] PHP Warning:  include_once(): Failed opening '../../config/core.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 12
+[11-Sep-2023 07:09:59 UTC] PHP Warning:  include_once(../../config/database.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 13
+[11-Sep-2023 07:09:59 UTC] PHP Warning:  include_once(): Failed opening '../../config/database.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 13
+[11-Sep-2023 07:09:59 UTC] PHP Warning:  include_once(../../objects/VehicleEquipment.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 14
+[11-Sep-2023 07:09:59 UTC] PHP Warning:  include_once(): Failed opening '../../objects/VehicleEquipment.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 14
+[11-Sep-2023 07:09:59 UTC] PHP Warning:  include_once(../../../classes/membersdb.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 15
+[11-Sep-2023 07:09:59 UTC] PHP Warning:  include_once(): Failed opening '../../../classes/membersdb.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 15
+[11-Sep-2023 07:09:59 UTC] PHP Fatal error:  Uncaught Error: Class 'membersdb' not found in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php:31
+Stack trace:
+#0 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 31
+[11-Sep-2023 07:12:49 UTC] PHP Warning:  include_once(../../config/core.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 12
+[11-Sep-2023 07:12:49 UTC] PHP Warning:  include_once(): Failed opening '../../config/core.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 12
+[11-Sep-2023 07:12:49 UTC] PHP Warning:  include_once(../../config/database.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 13
+[11-Sep-2023 07:12:49 UTC] PHP Warning:  include_once(): Failed opening '../../config/database.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 13
+[11-Sep-2023 07:12:49 UTC] PHP Warning:  include_once(../../objects/VehicleEquipment.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 14
+[11-Sep-2023 07:12:49 UTC] PHP Warning:  include_once(): Failed opening '../../objects/VehicleEquipment.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 14
+[11-Sep-2023 07:12:49 UTC] PHP Warning:  include_once(../../../classes/membersdb.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 15
+[11-Sep-2023 07:12:49 UTC] PHP Warning:  include_once(): Failed opening '../../../classes/membersdb.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 15
+[11-Sep-2023 07:12:49 UTC] PHP Fatal error:  Uncaught Error: Class 'membersdb' not found in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php:31
+Stack trace:
+#0 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 31
+[11-Sep-2023 07:13:55 UTC] PHP Warning:  include_once(../../config/core.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 12
+[11-Sep-2023 07:13:55 UTC] PHP Warning:  include_once(): Failed opening '../../config/core.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 12
+[11-Sep-2023 07:13:55 UTC] PHP Warning:  include_once(../../config/database.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 13
+[11-Sep-2023 07:13:55 UTC] PHP Warning:  include_once(): Failed opening '../../config/database.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 13
+[11-Sep-2023 07:13:55 UTC] PHP Warning:  include_once(../../objects/VehicleEquipment.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 14
+[11-Sep-2023 07:13:55 UTC] PHP Warning:  include_once(): Failed opening '../../objects/VehicleEquipment.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 14
+[11-Sep-2023 07:13:55 UTC] PHP Warning:  include_once(../../../classes/membersdb.php): failed to open stream: No such file or directory in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 15
+[11-Sep-2023 07:13:55 UTC] PHP Warning:  include_once(): Failed opening '../../../classes/membersdb.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 15
+[11-Sep-2023 07:13:55 UTC] PHP Fatal error:  Uncaught Error: Class 'membersdb' not found in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php:31
+Stack trace:
+#0 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 31
+[11-Sep-2023 17:15:24 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[11-Sep-2023 17:15:24 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[11-Sep-2023 17:15:24 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$vehicleID in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 46
+[11-Sep-2023 17:15:25 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[11-Sep-2023 17:15:25 Australia/Melbourne] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php:75
+Stack trace:
+#0 /home/maybzcom/public_html/dptses/check_list/api/flag/index.php(75): flag->AddFlag()
+#1 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php on line 75
+[11-Sep-2023 17:28:00 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[11-Sep-2023 17:28:00 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[11-Sep-2023 17:28:00 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$vehicleID in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 46
+[11-Sep-2023 17:28:00 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[11-Sep-2023 17:28:00 Australia/Melbourne] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php:75
+Stack trace:
+#0 /home/maybzcom/public_html/dptses/check_list/api/flag/index.php(75): flag->AddFlag()
+#1 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php on line 75
+[11-Sep-2023 17:31:00 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[11-Sep-2023 17:31:00 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[11-Sep-2023 17:31:00 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$vehicleID in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 46
+[11-Sep-2023 17:31:00 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[11-Sep-2023 17:31:00 Australia/Melbourne] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php:75
+Stack trace:
+#0 /home/maybzcom/public_html/dptses/check_list/api/flag/index.php(75): flag->AddFlag()
+#1 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php on line 75
+[11-Sep-2023 17:38:27 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[11-Sep-2023 17:38:27 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[11-Sep-2023 17:38:27 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[11-Sep-2023 17:38:27 Australia/Melbourne] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php:75
+Stack trace:
+#0 /home/maybzcom/public_html/dptses/check_list/api/flag/index.php(75): flag->AddFlag()
+#1 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php on line 75
+[11-Sep-2023 17:40:48 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[11-Sep-2023 17:40:48 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[11-Sep-2023 17:40:48 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[11-Sep-2023 17:40:48 Australia/Melbourne] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php:75
+Stack trace:
+#0 /home/maybzcom/public_html/dptses/check_list/api/flag/index.php(75): flag->AddFlag()
+#1 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php on line 75
+[11-Sep-2023 17:41:40 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[11-Sep-2023 17:41:40 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[11-Sep-2023 17:41:40 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[11-Sep-2023 17:41:40 Australia/Melbourne] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php:75
+Stack trace:
+#0 /home/maybzcom/public_html/dptses/check_list/api/flag/index.php(75): flag->AddFlag()
+#1 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php on line 75
+[11-Sep-2023 17:43:14 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[11-Sep-2023 17:43:14 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[11-Sep-2023 17:43:14 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[11-Sep-2023 17:43:14 Australia/Melbourne] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php:75
+Stack trace:
+#0 /home/maybzcom/public_html/dptses/check_list/api/flag/index.php(75): flag->AddFlag()
+#1 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php on line 75
+[11-Sep-2023 17:44:24 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[11-Sep-2023 17:44:24 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[11-Sep-2023 17:44:25 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[11-Sep-2023 17:44:25 Australia/Melbourne] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php:75
+Stack trace:
+#0 /home/maybzcom/public_html/dptses/check_list/api/flag/index.php(75): flag->AddFlag()
+#1 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php on line 75
+[12-Sep-2023 07:55:06 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 07:55:06 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 07:55:06 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 07:55:06 Australia/Melbourne] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php:75
+Stack trace:
+#0 /home/maybzcom/public_html/dptses/check_list/api/flag/index.php(75): flag->AddFlag()
+#1 {main}
+  thrown in /home/maybzcom/public_html/dptses/check_list/api/objects/flag.php on line 75
+[12-Sep-2023 07:57:34 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 07:57:34 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 07:57:34 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 08:00:32 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 08:00:32 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 08:00:33 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 08:00:45 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 08:00:45 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 08:00:45 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 08:01:03 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 08:01:03 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 08:01:03 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 08:01:28 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 08:01:28 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 08:01:28 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 08:10:16 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 08:10:16 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 08:10:16 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 08:11:49 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 08:11:49 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 08:11:49 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 08:16:55 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 08:16:55 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 08:16:55 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 08:17:57 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 08:17:57 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 08:17:58 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 08:19:05 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 08:19:05 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 08:19:05 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 08:23:08 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 08:23:08 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 08:23:08 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 10:17:09 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 10:17:09 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 10:17:09 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$subject in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 49
+[12-Sep-2023 10:17:10 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 10:18:16 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 10:18:16 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 10:18:16 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$subject in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 49
+[12-Sep-2023 10:18:16 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 10:22:50 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 10:22:50 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 10:22:50 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$subject in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 49
+[12-Sep-2023 10:22:51 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 10:23:48 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 10:23:48 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 10:23:49 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 10:27:49 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 10:27:49 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 10:27:50 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 10:37:02 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 10:37:02 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 10:37:03 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 10:38:10 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 10:38:10 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 10:38:10 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 10:39:52 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 10:39:52 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 10:39:52 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 11:06:26 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 11:06:26 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 11:06:27 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 11:09:07 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 11:09:07 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 11:09:07 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 11:10:22 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 11:10:22 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 11:10:22 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 11:14:21 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 11:14:21 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 11:14:21 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 11:26:39 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 11:26:39 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 11:26:40 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 11:28:53 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 11:28:53 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 11:28:55 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
+[12-Sep-2023 11:29:07 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 140
+[12-Sep-2023 11:29:07 Australia/Melbourne] PHP Notice:  Undefined property: stdClass::$id in /home/maybzcom/public_html/dptses/check_list/api/flag/index.php on line 44
+[12-Sep-2023 11:29:07 Australia/Melbourne] PHP Notice:  Undefined index: team in /home/maybzcom/public_html/dptses/check_list/classes/membersdb.php on line 90
