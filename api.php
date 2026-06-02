@@ -30,6 +30,10 @@ foreach (getallheaders() as $name => $value) {
                         {
                                 echo json_encode($CheckList->getEquipmentStatus());
                         }
+                        if ($data['request'] == "getVehicleEquipmentStatusAll")
+                        {
+                                echo json_encode($CheckList->getEquipmentStatusAll());
+                        }
                         if ($data['request'] == "setEquipmentStatus")
                         {
                                 echo json_encode($CheckList->setEquipmentStatus($data['idVehicleEquipment'], $data['Status'], $data['Date'], $data['Qty']));

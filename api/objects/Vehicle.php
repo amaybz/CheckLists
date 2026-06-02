@@ -15,6 +15,24 @@ class Vehicle{
         $this->conn = $db;
     }
 
+    function Create(){
+        // sanitize
+        $this->Name=htmlspecialchars(strip_tags($this->Name));
+        $this->CallSign=htmlspecialchars(strip_tags($this->CallSign));
+  
+        // prepare query
+        $stmt = $this->conn->prepare("INSERT INTO tblVehicles (Name, CallSign) VALUES (?, ?)");
+        // bind values
+        $stmt->bind_param("ss", $this->Name, $this->CallSign);
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+  
+        return false;
+      
+    }
+  
     function Update(){
         // sanitize
         $this->Name=htmlspecialchars(strip_tags($this->Name));

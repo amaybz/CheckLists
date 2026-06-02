@@ -1,492 +1,313 @@
-<?
+<?php
+
 class CheckList
 {
-	public function __construct()
+    private $db;
+
+    public function __construct($dbConnection = null)
     {
-		// Change the line below to your timezone!
-		date_default_timezone_set('Australia/Melbourne');
-	}
-
-	public function getEquipmentStatusbyid($idVehicleEquipment)
-    {
-		require_once('db.php');
-   		$db = new db();
-		$stmt = $db->conn->prepare("SELECT * FROM tblEquipmentCheckList WHERE `idVehicleEquipment` = ? ORDER BY `Date` DESC");
-		$stmt->bind_param("i", $idVehicleEquipment);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($result->num_rows != 0) 
-		{
-			while($row = $result->fetch_assoc()) {
-				 $EquipmentStatus[] = $row;
-			}
-			return $EquipmentStatus;
-		}
-		else
-		{
-			$EquipmentStatus[0]['Status'] = 0;
-			return $EquipmentStatus;
-		}
-		$stmt->close();
-		
-	}
-
-	public function getEquipmentStatus()
-    {
-		require_once('db.php');
-		$db = new db();
-		$stmt = $db->conn->prepare("SELECT * FROM tblEquipmentCheckList ORDER BY `Date` DESC");
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($result->num_rows != 0) 
-		{
-			while($row = $result->fetch_assoc()) {
-				 $EquipmentStatus[] = $row;
-			}
-			return $EquipmentStatus;
-		}
-		else
-		{
-			$EquipmentStatus[0]['Status'] = "no Records";
-			return $EquipmentStatus;
-		}
-		$stmt->close();
-		
-	}
-
-	public function getVehicles()
-    {
-    require_once('db.php');
-    $db = new db();
-		$stmt = $db->conn->prepare("SELECT * FROM tblVehicles ORDER BY `CallSign` ASC");
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($result->num_rows != 0) 
-		{
-			while($row = $result->fetch_assoc()) {
-				 $Vehicles[] = $row;
-			}
-			return $Vehicles;
-		}
-		else
-		{
-			$Vehicles[] = "no Records";
-			return $Vehicles;
-		}
-		$stmt->close();
-	}
-
-	public function getVehiclebyid($idVehicle)
-    {
-    require_once('db.php');
-    $db = new db();
-		$stmt = $db->conn->prepare("SELECT * FROM tblVehicles where id=? ORDER BY `CallSign` ASC");
-		$stmt->bind_param("i", $idVehicle);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($result->num_rows != 0) 
-		{
-			while($row = $result->fetch_assoc()) {
-				 $Vehicles[] = $row;
-			}
-			return $Vehicles;
-		}
-		else
-		{
-			$Vehicles[] = "no Records";
-			return $Vehicles;
-		}
-		$stmt->close();
-	}
-
-	public function getSectionsByVehicleID($idVehicle)
-    {
-    require_once('db.php');
-    $db = new db();
-		$stmt = $db->conn->prepare("SELECT * FROM tblVehicleSections where idVehicle=?");
-		$stmt->bind_param("i", $idVehicle);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($result->num_rows != 0) 
-		{
-			while($row = $result->fetch_assoc()) {
-				 $VehicleSections[] = $row;
-			}
-			return $VehicleSections;
-		}
-		else
-		{
-			$VehicleSections[] = "No Records";
-			return $VehicleSections;
-		}
-		$stmt->close();
-	}
-
-	public function getSubSectionsBySectionID($idSection)
-    {
-    require_once('db.php');
-    $db = new db();
-		$stmt = $db->conn->prepare("SELECT * FROM tblVehicleSubSections where IDSection=? ORDER BY Name ASC");
-		$stmt->bind_param("i", $idSection);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($result->num_rows != 0) 
-		{
-			while($row = $result->fetch_assoc()) {
-				 $VehicleSubSections[] = $row;
-			}
-			return $VehicleSubSections;
-		}
-		else
-		{
-			$VehicleSubSections[] = "No Records";
-			return $VehicleSubSections;
-		}
-		$stmt->close();
-	}
-
-	public function getEquipmentBySectionID($idSection)
-    {
-    require_once('db.php');
-    $db = new db();
-		$stmt = $db->conn->prepare("SELECT * FROM tblVehicleEquipment where idVehicleSection=?");
-		$stmt->bind_param("i", $idSection);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($result->num_rows != 0) 
-		{
-			while($row = $result->fetch_assoc()) {
-				 $Equipment[] = $row;
-			}
-			return $Equipment;
-		}
-		else
-		{
-			$Equipment[] = "No Records";
-			return $Equipment;
-		}
-		$stmt->close();
-	}
-
-	public function getEquipmentBySubSectionID($idSubSection)
-    {
-    require_once('db.php');
-    $db = new db();
-		$stmt = $db->conn->prepare("SELECT * FROM tblVehicleEquipment where subCatID=?");
-		$stmt->bind_param("i", $idSubSection);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($result->num_rows != 0) 
-		{
-			while($row = $result->fetch_assoc()) {
-				 $Equipment[] = $row;
-			}
-			return $Equipment;
-		}
-		else
-		{
-			$Equipment[] = "No Records";
-			return $Equipment;
-		}
-		$stmt->close();
-	}
-
-	public function editVehicle ($id, $Name, $CallSign)
-	{
-		require_once('db.php');
-		$db = new db();
-		$stmt = $db->conn->prepare("UPDATE tblVehicles SET Name=?, CallSign=? WHERE id=?");
-		$stmt->bind_param("ssi", $Name, $CallSign, $id);
-		$stmt->execute();
-		return ["status" => "Updated"];
-	}
-
-	public function deleteVehicle ($id)
-	{
-		require_once('db.php');
-		$db = new db();
-		$stmt = $db->conn->prepare("DELETE FROM tblVehicles WHERE id=?");
-		$stmt->bind_param("i", $id);
-		$stmt->execute();
-		return ["status" => "Deleted"];
-	}
-
-	public function addVehicle ($Name, $CallSign)
-	{
-		require_once('db.php');
->>>>>>>
-
-		$db = new db();
-		//echo "Name: " . $Name;
-		//echo " CallSign: " .$CallSign;
-		if($Name != "" AND $CallSign != "")
-		{
-			$stmt = $db->conn->prepare("INSERT INTO tblVehicles (Name, CallSign)  VALUES (?, ?)");
-			$stmt->bind_param("ss", $Name, $CallSign);
-			$stmt->execute();
-			$id = $db->conn->insert_id;
-			$stmt = $db->conn->prepare("SELECT * FROM tblVehicles where id=?");
-			$stmt->bind_param("i", $id);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			if($result->num_rows != 0) 
-			{
-				while($row = $result->fetch_assoc()) {
-					$Vehicle[] = $row;
-				}
-				return $Vehicle;
-			}
-			else
-			{
-				$Vehicle[] = "FAILED TO ADD";
-				return $Vehicle;
-			}
-		}
-		else
-		{
-			$Vehicle[] = "Invalid Data";
-			return $Vehicle;
-		}
-		
-	}
-
-	public function addSection ($idVehicle, $Name)
-	{
-		require_once('db.php');
-		$db = new db();
-		if($idVehicle != "" AND $Name != "")
-		{
-			$stmt = $db->conn->prepare("INSERT INTO tblVehicleSections (idVehicle, Name)  VALUES (?, ?)");
-			$stmt->bind_param("is", $idVehicle, $Name);
-			$stmt->execute();
-			$id = $db->conn->insert_id;
-			$stmt = $db->conn->prepare("SELECT * FROM tblVehicleSections where id=?");
-			$stmt->bind_param("i", $id);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			if($result->num_rows != 0) 
-			{
-				while($row = $result->fetch_assoc()) {
-					$VehicleSection[] = $row;
-				}
-				return $VehicleSection;
-			}
-			else
-			{
-				$VehicleSection[] = "FAILED TO ADD";
-				return $VehicleSection;
-			}
-		}
-		else
-		{
-			$VehicleSection[] = "Invalid Data";
-			return $VehicleSection;
-		}
-	}
-
-	public function checkProgress ($idVehicle)
-	{
-		$vehicle = $this->getVehiclebyid($idVehicle);
-		$VehicleSections = $this->getSectionsByVehicleID($idVehicle);
-		$equipmentcount = 0;
-		$ProgressCount = 0;
-		foreach($VehicleSections as $Sections) {
-			if(isset($Sections['id']))
-			{
-            $SubSections = $this->getSubSectionsBySectionID($Sections['id']);
-				foreach($SubSections as $SubSection) {
-					if(isset($SubSection['ID']))
-					{
-						$equipment = $this->getEquipmentBySubSectionID($SubSection['ID']);
-						$equipmentcount = $equipmentcount + count($equipment);
-						foreach($equipment as $item) {
-							if(isset($item['id']))
-							{
-								$itemstatus = $this->getEquipmentStatusbyid($item['id']);
-								if($itemstatus[0]["Status"] == 1 and date("Y-m-d", strtotime($itemstatus[0]["Date"]) ) == date("Y-m-d"))
-								{
-						
-									$ProgressCount++;
-								}
-							}	
-						}
-					}
-				}
-			}
+        if ($dbConnection) {
+            $this->db = $dbConnection;
+        } else {
+            require_once('db.php');
+            $this->db = (new db())->conn;
         }
-		$Progress["EquipmentCount"] = $equipmentcount;
-		$Progress["ProgressCount"] = $ProgressCount;
-		if($Progress["EquipmentCount"] > 0)
-		{
-			$Progress["Percent"] = ceil($Progress["ProgressCount"]/$Progress["EquipmentCount"] * 100);
-		}
-		else
-		{
-			$Progress["Percent"] = 0;
-		}
+    }
 
+    private function fetchAll($stmt)
+    {
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
+        return $data;
+    }
 
-		return $Progress;
-	}
+    public function getEquipmentStatusbyid($idVehicleEquipment)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tblEquipmentCheckList WHERE `idVehicleEquipment` = ? ORDER BY `Date` DESC");
+        $stmt->bind_param("i", $idVehicleEquipment);
+        $result = $this->fetchAll($stmt);
+        
+        if (empty($result)) {
+            return [['Status' => 0]];
+        }
+        return $result;
+    }
 
-	public function checkProgressByIDSection ($idSection)
-	{
-		$equipmentcount = 0;
-		$ProgressCount = 0;
-            $SubSections = $this->getSubSectionsBySectionID($idSection);
-            foreach($SubSections as $SubSection) {
-                $equipment = $this->getEquipmentBySubSectionID($SubSection['ID']);
-				$equipmentcount = $equipmentcount + count($equipment);
-                foreach($equipment as $item) {
-					if (isset($item['id'])) {
-						$itemid = $item['id'];
-						$itemstatus = $this->getEquipmentStatusbyid($itemid);
+    public function getEquipmentStatus()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tblEquipmentCheckList WHERE Date >= CURDATE() ORDER BY `Date` DESC");
+        $result = $this->fetchAll($stmt);
+        
+        if (empty($result)) {
+            return [['Status' => "no Records"]];
+        }
+        return $result;
+    }
 
-						if($itemstatus[0]["Status"] == 1 and date("Y-m-d", strtotime($itemstatus[0]["Date"]) ) == date("Y-m-d"))
-						{
-						
-							$ProgressCount++;
-						}
-					}
-					
+    public function getEquipmentStatusAll()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tblEquipmentCheckList ORDER BY `Date` DESC");
+        $result = $this->fetchAll($stmt);
+        
+        if (empty($result)) {
+            return [['Status' => "no Records"]];
+        }
+        return $result;
+    }
+
+    public function getVehicles()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tblVehicles ORDER BY `CallSign` ASC");
+        $result = $this->fetchAll($stmt);
+        
+        if (empty($result)) {
+            return ["no Records"];
+        }
+        return $result;
+    }
+
+    public function getVehiclebyid($idVehicle)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tblVehicles where id=? ORDER BY `CallSign` ASC");
+        $stmt->bind_param("i", $idVehicle);
+        $result = $this->fetchAll($stmt);
+        
+        if (empty($result)) {
+            return ["no Records"];
+        }
+        return $result;
+    }
+
+    public function getSectionsByVehicleID($idVehicle)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tblVehicleSections where idVehicle=?");
+        $stmt->bind_param("i", $idVehicle);
+        $result = $this->fetchAll($stmt);
+        
+        if (empty($result)) {
+            return ["No Records"];
+        }
+        return $result;
+    }
+
+    public function getSubSectionsBySectionID($idSection)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tblVehicleSubSections where IDSection=? ORDER BY Name ASC");
+        $stmt->bind_param("i", $idSection);
+        $result = $this->fetchAll($stmt);
+        
+        if (empty($result)) {
+            return ["No Records"];
+        }
+        return $result;
+    }
+
+    public function getEquipmentBySectionID($idSection)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tblVehicleEquipment where idVehicleSection=?");
+        $stmt->bind_param("i", $idSection);
+        $result = $this->fetchAll($stmt);
+        
+        if (empty($result)) {
+            return ["No Records"];
+        }
+        return $result;
+    }
+
+    public function getEquipmentBySubSectionID($idSubSection)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tblVehicleEquipment where subCatID=?");
+        $stmt->bind_param("i", $idSubSection);
+        $result = $this->fetchAll($stmt);
+        
+        if (empty($result)) {
+            return ["No Records"];
+        }
+        return $result;
+    }
+
+    public function editVehicle($id, $Name, $CallSign)
+    {
+        $stmt = $this->db->prepare("UPDATE tblVehicles SET Name=?, CallSign=? WHERE id=?");
+        $stmt->bind_param("ssi", $Name, $CallSign, $id);
+        $stmt->execute();
+        return ["status" => "Updated"];
+    }
+
+    public function deleteVehicle($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM tblVehicles WHERE id=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return ["status" => "Deleted"];
+    }
+
+    public function addVehicle($Name, $CallSign)
+    {
+        if (empty($Name) || empty($CallSign)) {
+            return ["Invalid Data"];
+        }
+        $stmt = $this->db->prepare("INSERT INTO tblVehicles (Name, CallSign) VALUES (?, ?)");
+        $stmt->bind_param("ss", $Name, $CallSign);
+        $stmt->execute();
+        $id = $this->db->insert_id;
+        
+        $stmt = $this->db->prepare("SELECT * FROM tblVehicles where id=?");
+        $stmt->bind_param("i", $id);
+        $result = $this->fetchAll($stmt);
+        
+        return empty($result) ? ["FAILED TO ADD"] : $result;
+    }
+
+    public function addSection($idVehicle, $Name)
+    {
+        if (empty($idVehicle) || empty($Name)) {
+            return ["Invalid Data"];
+        }
+        $stmt = $this->db->prepare("INSERT INTO tblVehicleSections (idVehicle, Name) VALUES (?, ?)");
+        $stmt->bind_param("is", $idVehicle, $Name);
+        $stmt->execute();
+        $id = $this->db->insert_id;
+
+        $stmt = $this->db->prepare("SELECT * FROM tblVehicleSections where id=?");
+        $stmt->bind_param("i", $id);
+        $result = $this->fetchAll($stmt);
+        
+        return empty($result) ? ["FAILED TO ADD"] : $result;
+    }
+
+    public function checkProgress($idVehicle)
+    {
+        $VehicleSections = $this->getSectionsByVehicleID($idVehicle);
+        $equipmentcount = 0;
+        $ProgressCount = 0;
+        
+        foreach ($VehicleSections as $Sections) {
+            if (isset($Sections['id'])) {
+                $SubSections = $this->getSubSectionsBySectionID($Sections['id']);
+                foreach ($SubSections as $SubSection) {
+                    if (isset($SubSection['ID'])) {
+                        $equipment = $this->getEquipmentBySubSectionID($SubSection['ID']);
+                        $equipmentcount += count($equipment);
+                        foreach ($equipment as $item) {
+                            if (isset($item['id'])) {
+                                $itemstatus = $this->getEquipmentStatusbyid($item['id']);
+                                if ($itemstatus[0]["Status"] == 1 && date("Y-m-d", strtotime($itemstatus[0]["Date"])) == date("Y-m-d")) {
+                                    $ProgressCount++;
+                                }
+                            }
+                        }
+                    }
                 }
             }
+        }
         
-		$Progress["EquipmentCount"] = $equipmentcount;
-		$Progress["ProgressCount"] = $ProgressCount;
-		$Progress["Percent"] = ceil($Progress["ProgressCount"]/$Progress["EquipmentCount"] * 100);
+        return [
+            "EquipmentCount" => $equipmentcount,
+            "ProgressCount" => $ProgressCount,
+            "Percent" => $equipmentcount > 0 ? ceil($ProgressCount / $equipmentcount * 100) : 0
+        ];
+    }
 
-
-		return $Progress;
-	}
-
-	public function addSubSection ($IDSection, $Name)
-	{
-		require_once('db.php');
-		$db = new db();
-		if($IDSection != "" AND $Name != "")
-		{
-			$stmt = $db->conn->prepare("INSERT INTO tblVehicleSubSections (IDSection, Name)  VALUES (?, ?)");
-			$stmt->bind_param("is", $IDSection, $Name);
-			$stmt->execute();
-			$id = $db->conn->insert_id;
-			$stmt = $db->conn->prepare("SELECT * FROM tblVehicleSubSections where id=?");
-			$stmt->bind_param("i", $id);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			if($result->num_rows != 0) 
-			{
-				while($row = $result->fetch_assoc()) {
-					$VehicleSubSection[] = $row;
-				}
-				return $VehicleSubSection;
-			}
-			else
-			{
-				$VehicleSubSection[] = "FAILED TO ADD";
-				return $VehicleSubSection;
-			}
-		}
-		else
-		{
-			$VehicleSubSection[] = "Invalid Data";
-			return $VehicleSubSection;
-		}
-	}
-
-	public function addVehicleEquipment ($idVehicleSection, $subCatID, $Name, $Qty)
-	{
-		require_once('db.php');
-		$db = new db();
-		$stmt = $db->conn->prepare("INSERT INTO tblVehicleEquipment (idVehicleSection, subCatID, Name, Qty)  VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("iisi", $idVehicleSection, $subCatID, $Name, $Qty);
-		$stmt->execute();
-		$id = $db->conn->insert_id;
-		$stmt = $db->conn->prepare("SELECT * FROM tblVehicleEquipment where id=?");
-		$stmt->bind_param("i", $id);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($result->num_rows != 0) 
-		{
-			while($row = $result->fetch_assoc()) {
-				$Vehicle[] = $row;
-			}
-			return $Vehicle;
-		}
-		else
-		{
-			$Vehicle[] = "FAILED TO ADD";
-			return $Vehicle;
-		}
-
-	}
-
-	public function deleteVehicleEquipment ($idequipment)
-	{
-		require_once('db.php');
-		$db = new db();
-		$stmt = $db->conn->prepare("DELETE FROM tblVehicleEquipment WHERE id=?");
-		$stmt->bind_param("i", $idequipment);
-		$stmt->execute();
-		$stmt = $db->conn->prepare("SELECT * FROM tblVehicleEquipment where id=?");
-		$stmt->bind_param("i", $idequipment);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if($result->num_rows != 0) 
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-
-	}
-	
-
-	public function setEquipmentStatus($idVehicleEquipment, $Status, $date, $Qty)
+    public function checkProgressByIDSection($idSection)
     {
-		require_once('db.php');
-		$db = new db();
-		//echo "UPDATE tblEquipmentCheckList SET Status=$Status where idVehicleEquipment=$idVehicleEquipment and Date>='$date'";
-		$stmt = $db->conn->prepare("UPDATE tblEquipmentCheckList SET Status=?, Qty=? where idVehicleEquipment=? and Date>=?");
-		$stmt->bind_param("iiss", $Status, $Qty, $idVehicleEquipment, $date);
-		$stmt->execute();
-		if($stmt->affected_rows > 0)
-		{
-			$insert['status'] = "Updated";
-			$insert['affectedrows'] = $stmt->affected_rows;
-			return $insert;
+        $equipmentcount = 0;
+        $ProgressCount = 0;
+        $SubSections = $this->getSubSectionsBySectionID($idSection);
+        
+        foreach ($SubSections as $SubSection) {
+            if (!isset($SubSection['ID'])) continue;
+            
+            $equipment = $this->getEquipmentBySubSectionID($SubSection['ID']);
+            $equipmentcount += count($equipment);
+            
+            foreach ($equipment as $item) {
+                if (isset($item['id'])) {
+                    $itemstatus = $this->getEquipmentStatusbyid($item['id']);
+                    if ($itemstatus[0]["Status"] == 1 && date("Y-m-d", strtotime($itemstatus[0]["Date"])) == date("Y-m-d")) {
+                        $ProgressCount++;
+                    }
+                }
+            }
+        }
+        
+        return [
+            "EquipmentCount" => $equipmentcount,
+            "ProgressCount" => $ProgressCount,
+            "Percent" => $equipmentcount > 0 ? ceil($ProgressCount / $equipmentcount * 100) : 0
+        ];
+    }
 
-		}
-		else
-		{
-			$stmts = $db->conn->prepare("SELECT * FROM tblEquipmentCheckList WHERE `idVehicleEquipment` = ? AND Date >= ?");
-							$stmts->bind_param("is", $idVehicleEquipment, $date);
-							$stmts->execute();
-							$results = $stmts->get_result();
-							if($results->num_rows == 0) 
-							{
-								//Insert Row
-								//echo "add required";
-								// prepare and bind
-								$stmt = $db->conn->prepare("INSERT INTO tblEquipmentCheckList (idVehicleEquipment, Date, Status, Qty)  VALUES (?, ?, ?, ?)");
-								$stmt->bind_param("isii", $idVehicleEquipment, $date, $Status, $Qty);
-								$stmt->execute();	
-								$insert['status'] = "Added";
-								return $insert;
-							}	
-							else
-							{
-								$insert['status'] = "NoChange";
-								return $insert;
-							}
-			
+    public function addSubSection($IDSection, $Name)
+    {
+        if (empty($IDSection) || empty($Name)) {
+            return ["Invalid Data"];
+        }
+        $stmt = $this->db->prepare("INSERT INTO tblVehicleSubSections (IDSection, Name) VALUES (?, ?)");
+        $stmt->bind_param("is", $IDSection, $Name);
+        $stmt->execute();
+        $id = $this->db->insert_id;
 
-		}
-		
-	}
+        $stmt = $this->db->prepare("SELECT * FROM tblVehicleSubSections where id=?");
+        $stmt->bind_param("i", $id);
+        $result = $this->fetchAll($stmt);
+        
+        return empty($result) ? ["FAILED TO ADD"] : $result;
+    }
 
+    public function addVehicleEquipment($idVehicleSection, $subCatID, $Name, $Qty)
+    {
+        $stmt = $this->db->prepare("INSERT INTO tblVehicleEquipment (idVehicleSection, subCatID, Name, Qty) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("iisi", $idVehicleSection, $subCatID, $Name, $Qty);
+        $stmt->execute();
+        $id = $this->db->insert_id;
+        
+        $stmt = $this->db->prepare("SELECT * FROM tblVehicleEquipment where id=?");
+        $stmt->bind_param("i", $id);
+        $result = $this->fetchAll($stmt);
+        
+        return empty($result) ? ["FAILED TO ADD"] : $result;
+    }
+
+    public function deleteVehicleEquipment($idequipment)
+    {
+        $stmt = $this->db->prepare("DELETE FROM tblVehicleEquipment WHERE id=?");
+        $stmt->bind_param("i", $idequipment);
+        $stmt->execute();
+        
+        $stmt = $this->db->prepare("SELECT * FROM tblVehicleEquipment where id=?");
+        $stmt->bind_param("i", $idequipment);
+        $stmt->execute();
+        return $stmt->get_result()->num_rows === 0;
+    }
+
+    public function setEquipmentStatus($idVehicleEquipment, $Status, $date, $Qty)
+    {
+        $stmt = $this->db->prepare("UPDATE tblEquipmentCheckList SET Status=?, Qty=? where idVehicleEquipment=? and Date>=?");
+        $stmt->bind_param("iiss", $Status, $Qty, $idVehicleEquipment, $date);
+        $stmt->execute();
+        
+        if ($this->db->affected_rows > 0) {
+            return ["status" => "Updated", "affectedrows" => $this->db->affected_rows];
+        }
+
+        $stmt = $this->db->prepare("SELECT * FROM tblEquipmentCheckList WHERE `idVehicleEquipment` = ? AND Date >= ?");
+        $stmt->bind_param("is", $idVehicleEquipment, $date);
+        $stmt->execute();
+        
+        if ($stmt->get_result()->num_rows === 0) {
+            $stmt = $this->db->prepare("INSERT INTO tblEquipmentCheckList (idVehicleEquipment, Date, Status, Qty) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("isii", $idVehicleEquipment, $date, $Status, $Qty);
+            $stmt->execute();
+            return ["status" => "Added"];
+        }
+        
+        return ["status" => "NoChange"];
+    }
 }
-
-?>

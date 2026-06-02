@@ -27,7 +27,7 @@ class VehicleEquipment{
     $this->id=htmlspecialchars(strip_tags($this->id));
   
     // prepare query
-    $stmt = $this->conn->prepare("SELECT * FROM tblVehicleEquipment where id=?");
+    $stmt = $this->conn->prepare("SELECT id, idVehicleSection, subCatID, Name, Qty FROM tblVehicleEquipment where id=?");
    // $stmt = $this->conn->prepare("SELECT * FROM tblVehicleEquipment");
     // bind values
     $stmt->bind_param("i", $this->id);

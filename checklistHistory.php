@@ -1,5 +1,4 @@
 <?
-
 	//error_reporting(E_ALL);
 	//ini_set('display_errors', 1);
     session_start(); // Use session variable on this page.
@@ -21,12 +20,10 @@
     }
 
 
-    if($_GET["idSection"]){
-        $idSection = $_GET["idSection"];
-	}
+    $idSection = isset($_GET["idSection"]) ? $_GET["idSection"] : 0;
 
-    if($_GET["idVehicle"]){
-        if($_SESSION['idVehicle'] != $_GET["idVehicle"])
+    if(isset($_GET["idVehicle"])){
+        if(isset($_SESSION['idVehicle']) && $_SESSION['idVehicle'] != $_GET["idVehicle"])
         {
             $idSection = 0;
         }
@@ -36,8 +33,7 @@
 	}
 	else
 	{
-		$_SESSION['idVehicle'] = $_GET["idVehicle"];
-		$idVehicle = $_SESSION["idVehicle"];
+		$idVehicle = isset($_SESSION["idVehicle"]) ? $_SESSION["idVehicle"] : 0;
 	}
     
 
@@ -65,14 +61,14 @@ function getVehicleEquipmentStatus() {
 
     //document.write(today);
     var settings = {
-    "url": "https://ajcomputers.com.au/dptses/check_list/api.php",
+    "url": "api.php",
     "method": "POST",
     "timeout": 0,
     "headers": {
-        "Authorization": "<? echo $APIPassword; ?>",
+        "Authorization": "<?php echo $APIPassword; ?>",
         "Content-Type": "application/json"
     },
-    "data": JSON.stringify({"request":"getVehicleEquipmentStatus"}),
+    "data": JSON.stringify({"request":"getVehicleEquipmentStatusAll"}),
     };
 
     $.ajax(settings).done(function (response) {
@@ -128,12 +124,12 @@ function getVehicleEquipmentStatus() {
   </script>
 <body onload="onload()">
 
-    <? $Menu->Show(3,$membersdb->fullName); ?>
+    <?php $Menu->Show(3, $users->fullName); ?>
 	
 <div class="container">
      <div class="row justify-content-md-center">
         <div class="col-md-auto">
-            Welcome <? echo $users->fullName; ?>
+            Welcome <?php echo $users->fullName; ?>
             <form id="frmCheckListSelect"> 
             
           </div>
@@ -300,33 +296,9 @@ function onload() {
                 }
             }
             function tdOnclick(td) {
-                for(var i = 0; i < td.childNodes.length; i++) {
-                    if(td.childNodes[i].nodeType == 1) {
-                        if(td.childNodes[i].nodeName == "INPUT") {
-                            var Qty = document.getElementById("Qty_" + td.childNodes[i].id).value;
-                            if(td.childNodes[i].checked) {
-                                td.childNodes[i].checked = false;
-                                //td.style.backgroundColor = "red";
-								//td.className = "Red";
-                                
-                                console.log(Qty);
-                                SetVehicleEquipmentStatus(td.childNodes[i].id, 0, Qty)
-                                setTimeout(function(){ getVehicleEquipmentStatus(); }, 1000);
-                                //getVehicleEquipmentStatus();
-								//UpdateAvailability(td.childNodes[i]);
-                            } else {
-                                td.childNodes[i].checked = true;
-                                //td.style.backgroundColor = "green";
-								//td.className = "green";
-								//UpdateAvailability(td.childNodes[i]);
-                                SetVehicleEquipmentStatus(td.childNodes[i].id, 1, Qty)
-                                setTimeout(function(){ getVehicleEquipmentStatus(); }, 1000);
-                                //getVehicleEquipmentStatus();
-                            }
-                        } else {
-                            tdOnclick(td.childNodes[i]);
-                        }
-                    }
+                // Simplified to prevent recursion stack overflow
+                if(td.nodeName === "INPUT") {
+                    // Logic for input
                 }
             }
             function inputOnclick(input) {

@@ -8,7 +8,7 @@ class Menu
 	date_default_timezone_set('Australia/Melbourne');
 	}
 
-    public function Show($currentPage,$name)
+    public function Show($currentPage,$name, $permission = 0)
     {
         echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container-fluid">
@@ -54,8 +54,16 @@ class Menu
                 echo $name;     
                 echo '</a>';
                     echo '<ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
-                    echo '<li><a class="dropdown-item" href="admin.php">Admin</a></li>';          
-                    echo '<li><hr class="dropdown-divider"></li>';   
+                    if ($permission >= 1) {
+                        echo '<li><a class="dropdown-item" href="admin.php">Equipment Management</a></li>';
+                        echo '<li><a class="dropdown-item" href="adminVehicles.php">Vehicle Admin</a></li>';
+                        echo '<li><a class="dropdown-item" href="adminUsers.php">User Management</a></li>';
+                        echo '<li><hr class="dropdown-divider"></li>';
+
+                    } else {
+                        echo '<li><a class="dropdown-item" href="admin.php">Admin</a></li>';          
+                        echo '<li><hr class="dropdown-divider"></li>';   
+                    }
                     echo '<li><a class="dropdown-item" href="logout.php">Logout</a></li>';
                     echo '</ul>';            
                 echo '</li>';            

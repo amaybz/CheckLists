@@ -263,7 +263,7 @@ function updateQty(idVehicleEquipment, Qty){
 <body onload="onload()">
 <table><td></td></table>
 
-    <? $Menu->Show(0, $users->fullName, $users->Permission); ?>
+    <? $Menu->Show(2, $users->fullName); ?>
 	
 <div class="container">
      <div class="row justify-content-md-center">
@@ -375,38 +375,36 @@ function updateQty(idVehicleEquipment, Qty){
             }
             else {
 	            echo '<div id="checklist" class="checklist">';
-                echo '<div class="table-responsive">';
-                echo '<table class="table table-striped table-hover align-middle">';
-                echo '<thead class="table-light"><tr><th scope="col">Item</th><th scope="col">Exp QTY</th><th scope="col">Act QTY</th><th scope="col">Checked</th><th scope="col">Flag</th></tr></thead>';
+                echo '<table class="table table-striped table-responsive">';
+                echo '<tr><td>Item</td><td>Expected <br> QTY </td><td>Actual <br> QTY </td><td>Checked</td><td>Flag</td><tr>';
                 foreach ($SubSections as $SubSection) 
                 {
-                        echo '<tr><th colspan="5" class="table-dark">' . $SubSection['Name'] . '</th></tr>';
+                        echo '<tr><th colspan="5" class="table-dark"><b>' . $SubSection['Name'] . '</b></th></tr>';
                         $equipmentforSubSection = $CheckList->getEquipmentBySubSectionID($SubSection['ID']);
                         //List gear for Sub Sections
                         foreach ($equipmentforSubSection as $equipment) {
                             echo "<tr>";
                             if (isset($equipment['id'])) {
-                                echo "<td>";
                                 $filename = 'img/' . $equipment['id'] . '.jpg';
                                 if (file_exists($filename)) {
-                                    echo '<div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#ModelDisplayImage" data-bs-record="'. $equipment['id'] . '" data-bs-itemname="'. $equipment['Name'] . '">';
-                                    echo '<img src="' . $filename . '" style="width:3rem; height:3rem; object-fit: cover;" class="img-thumbnail me-2" alt="IMG">';
-                                    echo '<span>' . $equipment['Name'] . '</span></div>';
+                                    echo '<td data-bs-toggle="modal" data-bs-target="#ModelDisplayImage" data-bs-record="'. $equipment['id'] . '" data-bs-itemname="'. $equipment['Name'] . '">' . $equipment['Name'];
+                                    echo ' <img id="imageicon" src="' . $filename . '" style="width:3rem; height:3rem; object-fit: cover;" class="figure-img img-fluid rounded" alt="IMG">' . '</td>';
+
                                 } else {
-                                    echo $equipment['Name'];
+                                    echo "<td>" . $equipment['Name'] . "</td>";
                                 }
-                                echo "</td>";
                             
                                 echo "<td>" . $equipment['Qty'] . "</td>";
-                                echo '<td id="td_' . $equipment['id'] . '"><input class="form-control form-control-sm" style="width: 60px;" id="Qty_' . $equipment['id'] . '" type="number" min="0" max="20" onClick="this.focus();this.select();" onblur="updateQty(' .  $equipment['id'] . ', this.value);"/>' . "</td>";
-                                echo '<td name="tdcheck"><input class="form-check-input" style="width: 25px; height: 25px;" type="checkbox" name="itemchk" id="' . $equipment['id'] . '" /></td>';
-                                echo '<td class="text-center" data-bs-toggle="modal" data-bs-target="#ModelDisplayFlag" data-bs-record="'. $equipment['id'] . '" data-bs-itemname="'. $equipment['Name'] . '" data-bs-VehicleID="'. $idVehicle .  '" data-bs-VehicleCallSign="'. $VehicleCallSign . '">'; 
-                                echo '<img src="img/flag.png" style="width:2rem;" alt="Flag"></td>';
+                                echo '<td id="td_' . $equipment['id'] . '"> <div class="col-xs-2"><input id="Qty_' . $equipment['id'] . '" type="number" min="0" max="20" size=5 onClick="this.focus();this.select();" onblur="updateQty(' .  $equipment['id'] . ', this.value);"/>' . "</div></td>";
+                                echo '<td name="tdcheck"><input type="checkbox" name="itemchk" id="' . $equipment['id'] . '" /></td>';
+                                    echo '<td data-bs-toggle="modal" data-bs-target="#ModelDisplayFlag" data-bs-record="'. $equipment['id'] . '" data-bs-itemname="'. $equipment['Name'] . '" data-bs-VehicleID="'. $idVehicle .  '" data-bs-VehicleCallSign="'. $VehicleCallSign . '">'; 
+                                    echo ' <img id="imageicon" src="img/flag.png" style="width:1rem;" class="figure-img img-fluid rounded" alt="IMG">' . '</td>';
                                 echo '</tr>';
                             }
+
+                                 
                         }
                  }
-                echo '</table></div>';
                 echo '</table></div>';
             }
 

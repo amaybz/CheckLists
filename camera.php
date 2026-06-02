@@ -1,10 +1,10 @@
   <p>
   <label for="envimage">Upload a photo of the environment:</label>
-  <input type="file" id="envimage" capture="environment" accept="image/*">
+  <input type="file" id="envimage" accept="image/*">
   </p>
   <p>
   <label for="imageFile">Upload a photo of yourself:</label>
-  <input type="file" id="imageFile" capture="user" accept="image/*">
+  <input type="file" id="imageFile" accept="image/*">
   </p>
 
   <p>
