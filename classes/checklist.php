@@ -191,9 +191,31 @@ class CheckList
 		$stmt->close();
 	}
 
+	public function editVehicle ($id, $Name, $CallSign)
+	{
+		require_once('db.php');
+		$db = new db();
+		$stmt = $db->conn->prepare("UPDATE tblVehicles SET Name=?, CallSign=? WHERE id=?");
+		$stmt->bind_param("ssi", $Name, $CallSign, $id);
+		$stmt->execute();
+		return ["status" => "Updated"];
+	}
+
+	public function deleteVehicle ($id)
+	{
+		require_once('db.php');
+		$db = new db();
+		$stmt = $db->conn->prepare("DELETE FROM tblVehicles WHERE id=?");
+		$stmt->bind_param("i", $id);
+		$stmt->execute();
+		return ["status" => "Deleted"];
+	}
+
 	public function addVehicle ($Name, $CallSign)
 	{
 		require_once('db.php');
+>>>>>>>
+
 		$db = new db();
 		//echo "Name: " . $Name;
 		//echo " CallSign: " .$CallSign;

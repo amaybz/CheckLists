@@ -140,15 +140,15 @@ function list(){
     return $data;
 }
  
-// update a user record
-public function edit(){
+    // update a user record
+    public function edit(){
  
  
     $query = "UPDATE webusers
             SET
                 name = ?,
                 username = ?,
-                access = ?,
+                access = ?
             WHERE id = ?";
 
     //echo "Query: " . $query;
@@ -158,7 +158,7 @@ public function edit(){
             SET
                 name = ?,
                 username = ?,
-                access = ?,
+                access = ?
             WHERE id = ?");
  
     // sanitize
@@ -178,4 +178,27 @@ public function edit(){
  
     return false;
 }
+
+    // reset user password
+    public function resetPassword(){
+        // prepare the query
+        $stmt = $this->conn->prepare("UPDATE webusers SET password = ? WHERE id = ?");
+     
+        // sanitize
+        $this->id=htmlspecialchars(strip_tags($this->id));
+        $this->password=htmlspecialchars(strip_tags($this->password));
+        
+        // hash the password before saving to database
+        $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
+    
+        // bind the values
+        $stmt->bind_param("si", $password_hash, $this->id);
+     
+        // execute the query
+        if($stmt->execute()){
+            return true;
+        }
+     
+        return false;
+    }
 }

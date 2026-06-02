@@ -38,6 +38,14 @@ foreach (getallheaders() as $name => $value) {
                         {
                                 echo json_encode($CheckList->addVehicle ($data['VehicleName'], $data['VehicleCallSign']));
                         }
+                        if ($data['request'] == "editVehicle")
+                        {
+                                echo json_encode($CheckList->editVehicle ($data['id'], $data['Name'], $data['CallSign']));
+                        }
+                        if ($data['request'] == "deleteVehicle")
+                        {
+                                echo json_encode($CheckList->deleteVehicle ($data['id']));
+                        }
                         if ($data['request'] == "addEquipment")
                         {
                                 echo json_encode($CheckList->addVehicleEquipment ($data['idVehicleSection'],$data['subCatID'],$data['Name'],$data['Qty']));

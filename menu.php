@@ -53,9 +53,11 @@ class Menu
                 echo $name;     
                 echo '</a>';
                     echo '<ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
-                    echo '<li><a class="dropdown-item" href="#">Admin</a></li>';          
+                    echo '<li><a class="dropdown-item" href="admin.php">Admin</a></li>';
+                    echo '<li><a class="dropdown-item" href="adminUsers.php">User Management</a></li>';
+                    echo '<li><a class="dropdown-item" href="manageVehicles.php">Vehicle Management</a></li>';
                     echo '<li><hr class="dropdown-divider"></li>';   
-                    echo '<li><a class="dropdown-item" href="#">Logout</a></li>';
+                    echo '<li><a class="dropdown-item" href="logout.php">Logout</a></li>';
                     echo '</ul>';            
                 echo '</li>';            
             echo '</ul>'; 
